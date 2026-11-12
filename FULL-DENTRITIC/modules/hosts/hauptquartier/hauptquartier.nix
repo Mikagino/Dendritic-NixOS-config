@@ -11,23 +11,21 @@
   # ----- Modules -----
   flake.nixosConfigurations.hauptquartier = inputs.nixpkgs.lib.nixosSystem {
     modules = with self.nixosModules; [
-      common
-
       app-image
       audio
+      common
       desktop-env
       game-dev
       gaming
-      japanese
+      japanese-mozc
       locale
       networking
+      mika
       nix-config
       nvidia
       python
       shell-aliases
       unstable-overlay
-
-      mika
     ]
     ++ [
       self.nixosModules.hauptquartier

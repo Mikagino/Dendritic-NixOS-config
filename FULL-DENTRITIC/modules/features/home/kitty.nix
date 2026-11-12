@@ -2,7 +2,7 @@
 	...
 }: {
 	flake.homeModules.kitty = {pkgs, ... }: {
-    	programs.kitty = {
+    programs.kitty = {
 			enable = true;
 			shellIntegration = {
 				enableBashIntegration = true;
