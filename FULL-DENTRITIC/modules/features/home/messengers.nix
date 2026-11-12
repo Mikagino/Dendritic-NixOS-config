@@ -1,13 +1,14 @@
 {
 	...
 }: {
-	flake.homeModules.messengers = {pkgs, ... }: {
+	flake.homeModules.messengers = {pkgs,  ... }: {
 		home.packages = with pkgs; [
 			signal-desktop
 			whatsapp-electron
 			thunderbird
-			discord
-			telegram-desktop
+			#discord
+			vesktop # alternative discord
+      telegram-desktop
 			zoom-us
 		];
 	};
