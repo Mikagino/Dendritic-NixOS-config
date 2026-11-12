@@ -32,10 +32,21 @@
     };
 	};
 
-  flake.homeModules.nix-config = {
+  flake.homeModules.nix-config = { pkgs, ... }: {
 		#imports = [inputs.nix-index-database.homeModules.default];
 		# see https://github.com/hercules-ci/flake-parts/issues/74
 		nixpkgs.config.allowUnfree = true;
 		#nixpkgs.overlays = [inputs.self.overlays.unstable];
+
+    # vscode with nix language support
+    programs.vscode = {
+      enable = true;
+      mutableExtensionsDir = false;
+			profiles.default = {
+        extensions = with pkgs.vscode-extensions; [
+          jnoortheen.nix-ide
+        ];
+      };
+		};
 	};
 }

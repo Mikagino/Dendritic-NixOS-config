@@ -4,8 +4,8 @@
 	flake.homeModules.draw = {pkgs, ... }: {
 		home.packages = with pkgs; [
 			gaphor
-      gimp2-with-plugins
-      #pureref # make it work :(
-    ];
+      		gimp2-with-plugins
+      		#pureref # make it work :(
+    	];
 	};
 }

@@ -15,7 +15,6 @@
       home-manager
       kitty
       #nixfmt
-      vscode
 
       # kde packages
       kdePackages.ark
@@ -26,6 +25,11 @@
       # MOST IMPORTANT PACKAGE! KEEP IN CONFIG AT ALL COST!
       # haskellPackages.Fortnite-Hack-Cheats-Free-V-Bucks-Generator
     ];
+
+    programs.vscode = {
+			enable = true;
+			package = pkgs.unstable.vscode;
+		};
 
     environment.plasma6.excludePackages = with pkgs.kdePackages; [
         konsole

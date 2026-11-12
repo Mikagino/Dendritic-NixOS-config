@@ -2,7 +2,7 @@
 	...
 }: {
 	flake.homeModules.kitty = {pkgs, ... }: {
-    programs.kitty = {
+    	programs.kitty = {
 			enable = true;
 			shellIntegration = {
 				enableBashIntegration = true;
@@ -38,13 +38,19 @@
 
 		# set kitty as default terminal
 		# TODO: Check if this is working!
-		xdg.terminal-exec = {
-			enable = true;
-			settings = {
-				default = [
-					"kitty.desktop"
-				];
-			};
+		#xdg.terminal-exec = {
+		#	enable = true;
+		#	settings = {
+		#		default = [
+		#			"kitty.desktop"
+		#		];
+		#	};
+		#};
+
+		home.sessionVariables = {
+			#EDITOR = "nvim";
+			#BROWSER = "firefox";
+			TERMINAL = "alacritty";
 		};
 	};
 }
