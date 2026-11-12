@@ -18,24 +18,24 @@
 	# Select home features for user
 	flake.homeConfigurations.mika =
 		inputs.home-manager.lib.homeManagerConfiguration {
-			pkgs = import inputs.nixpkgs {stdenv.hostPlatform.system = "x86_64-linux";};
-			modules = with self.homeModules; [
-      	audio-editing
-				draw
-        electronics
-        game-dev
-				gaming
-				git
-				kitty
-				messengers
-				office
-        print3d
-				terminal
-        nix-config
-
-				mika
-			];
-		};
+		pkgs = import inputs.nixpkgs {system = "x86_64-linux";};
+		modules = with self.homeModules; [
+			audio-editing
+			draw
+			electronics
+			game-dev
+			gaming
+			git
+			kitty
+			messengers
+			mika
+			office
+        	nix-config
+			print3d
+			terminal
+        	unstable-overlay
+		];
+	};
 
 	# Setup home manager
 	flake.homeModules.mika = { pkgs, ... }: {
