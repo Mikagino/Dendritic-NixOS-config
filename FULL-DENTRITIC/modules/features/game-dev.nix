@@ -18,7 +18,7 @@
 	# https://wiki.nixos.org/wiki/Godot-Mono
 	flake.homeModules.game-dev = { pkgs, ... }: {
 		programs.vscode = {
-      enable = true;
+      #enable = true;
       mutableExtensionsDir = false;
 			profiles.default = {
         userSettings = {

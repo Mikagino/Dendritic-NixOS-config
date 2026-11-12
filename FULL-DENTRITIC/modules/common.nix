@@ -15,6 +15,7 @@
       home-manager
       kitty
       #nixfmt
+      unstable.vscode
 
       # kde packages
       kdePackages.ark
@@ -26,15 +27,17 @@
       # haskellPackages.Fortnite-Hack-Cheats-Free-V-Bucks-Generator
     ];
 
-    programs.vscode = {
-			enable = true;
-			package = pkgs.unstable.vscode;
-		};
-
     environment.plasma6.excludePackages = with pkgs.kdePackages; [
         konsole
         oxygen
         plasma-browser-integration
       ];
   };
+
+	flake.homeModules.common = {pkgs, ... }: {
+		programs.vscode = {
+			enable = true;
+			package = pkgs.unstable.vscode;
+		};
+	};
 }

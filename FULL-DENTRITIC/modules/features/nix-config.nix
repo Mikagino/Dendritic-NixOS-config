@@ -40,7 +40,7 @@
 
     # vscode with nix language support
     programs.vscode = {
-      enable = true;
+      #enable = true;
       mutableExtensionsDir = false;
 			profiles.default = {
         extensions = with pkgs.vscode-extensions; [

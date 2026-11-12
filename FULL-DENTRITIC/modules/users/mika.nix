@@ -21,6 +21,7 @@
 		pkgs = import inputs.nixpkgs {system = "x86_64-linux";};
 		modules = with self.homeModules; [
 			audio-editing
+			common
 			draw
 			electronics
 			game-dev
