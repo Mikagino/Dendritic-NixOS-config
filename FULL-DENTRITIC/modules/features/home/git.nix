@@ -20,7 +20,23 @@
     programs.lazygit = {
       enable = true;
       settings = {
-        gui.theme.authorColors."Mikagino" = "#a12929";
+        notARepository = "skip";
+        gui = {
+          theme.authorColors."Mikagino" = "#a12929";
+          nerdFontsVersion = "3";
+          # customIcons = {
+          #   extensions = {
+          #     ".gd" = {
+          #       icon = builtins.fromJSON ''"\ue7ee"'';
+          #       color = "#478cbf";
+          #     };
+          #     ".cs" = {
+          #       icon = builtins.fromJSON ''"\udb80\udf1b"'';
+          #       color = "#478cbf";
+          #     };
+          #   };
+          # };
+        };
       };
     };
 	};
