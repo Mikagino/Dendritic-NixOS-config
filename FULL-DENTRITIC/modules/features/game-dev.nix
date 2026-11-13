@@ -25,17 +25,25 @@
           "dotnetAcquisitionExtension.existingDotnetPath" = [
             {
               "extensionId" = "ms-dotnettools.csharp";
-              "path" = "${pkgs.dotnet-sdk_9}/bin";
+              "path" = "${pkgs.dotnet-sdk_10}/bin/dotnet";
             }
             {
               "extensionId" = "ms-dotnettools.csdevkit";
-              "path" = "${pkgs.dotnet-sdk_9}/bin";
+              "path" = "${pkgs.dotnet-sdk_10}/bin/dotnet";
             }
             {
               "extensionId" = "woberg.godot-dotnet-tools";
-              "path" = "${pkgs.dotnet-sdk_8}/bin"; # Godot-Mono uses DotNet8 version.
+              "path" = "${pkgs.dotnet-sdk_8}/bin/dotnet"; # Godot-Mono uses DotNet8 version.
             }
           ];
+
+          "[csharp]" = {
+            "editor.defaultFormatter" = "ms-dotnettools.csharp";
+            "editor.formatOnSave" = true;
+            "editor.formatOnPaste" = true;
+          };
+
+          "godotTools.editorPath.godot4" = "godot-mono";
           "godotTools.lsp.serverPort" = 6005; # port should match your Godot configuration
         };
 
