@@ -31,10 +31,10 @@
 			messengers
 			mika
 			office
-        	nix-config
+      nix-config
 			print3d
 			terminal
-        	unstable-overlay
+      unstable-overlay
 		];
 	};
 
@@ -49,12 +49,10 @@
 
 		home = {
 			username = "mika";
-  			homeDirectory = "/home/mika";
+  		homeDirectory = "/home/mika";
 			stateVersion = "26.05";
 
 			packages = with pkgs; [
-				kitty
-				lazygit
 				spotify
 			];
 		};

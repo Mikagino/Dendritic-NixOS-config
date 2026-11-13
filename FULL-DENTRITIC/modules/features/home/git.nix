@@ -19,6 +19,9 @@
 
     programs.lazygit = {
       enable = true;
+      settings = {
+        gui.theme.authorColors."Mikagino" = "#a12929";
+      };
     };
 	};
 }
