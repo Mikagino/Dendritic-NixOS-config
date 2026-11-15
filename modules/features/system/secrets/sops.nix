@@ -2,9 +2,9 @@
 	inputs,
 	...
 }: {
-	flake.nixosModules.sops = { pkgs, ... }: {
+	flake.nixosModules.sops = { ... }: {
     modules = [
-      sops-nix.nixosModules.sops
+      inputs.sops-nix.nixosModules.sops
     ];
   };
 }
