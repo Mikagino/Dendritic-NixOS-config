@@ -2,8 +2,6 @@
 	...
 }: {
   flake.homeModules.office = { pkgs, ... }: {
-    programs.anki.enable = true;
-
     home.packages = with pkgs; [
       # ----- Libre Office -----
       libreoffice-qt

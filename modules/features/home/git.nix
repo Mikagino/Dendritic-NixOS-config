@@ -1,14 +1,19 @@
 {
+  inputs,
 	...
 }: {
-	flake.homeModules.git = { pkgs, inputs, ... }: {
+	flake.homeModules.git = { pkgs, config, ... }: {
+    sops.secrets."github/username" = { };
+    sops.secrets."github/email" = { };
+    sops.secrets."github/password" = { };
+
     programs.git = {
       enable = true;
       lfs.enable = true;
       settings = {
         user = {
-          name = inputs.sops.secrets.github.username;
-          email = inputs.sops.secrets.github.email;
+          name = "${config.sops.secrets."github/username".path}";
+          email = "${config.sops.secrets."github/email".path}";
         };
         init = {
           defaultBranch = "main";
@@ -22,7 +27,7 @@
       settings = {
         notARepository = "skip";
         gui = {
-          theme.authorColors."${inputs.sops.secrets.github.username}" = "#a12929";
+          theme.authorColors."Mikagino" = "#a12929";
           nerdFontsVersion = "3";
           # customIcons = {
           #   extensions = {

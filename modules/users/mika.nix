@@ -20,6 +20,7 @@
 		inputs.home-manager.lib.homeManagerConfiguration {
 		pkgs = import inputs.nixpkgs {system = "x86_64-linux";};
 		modules = with self.homeModules; [
+			anki
 			audio-editing
 			common
 			draw
@@ -33,6 +34,7 @@
 			office
       nix-config
 			print3d
+			sops
 			terminal
       unstable-overlay
 		];
