@@ -1,88 +1,31 @@
 {
-  description = "NixOS config";
+  description = "Mikagino's Dentritic NixOS";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/release-26.05";
-    unstable.url = "github:nixos/nixpkgs-channels/nixos-unstable";
+    # NixOS packages
+		nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+		nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    # Necessary for Dendritic
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    blender-bin.url = "https://flakehub.com/f/edolstra/blender-bin/*";
+    # blender binary, including cuda
+    blender-cuda.url = "github:edolstra/nix-warez?dir=blender";
 
-    # optional stuff from the source config
-    #niri.url = "github:sodiboo/niri-flake";
-    #vicinae.url = "github:vicinaehq/vicinae";
-    #noctalia.url = "github:noctalia-dev/noctalia-shell";
-    #nix-colors.url = "github:misterio77/nix-colors";
-  };
-
-  outputs = { self,
-              nixpkgs,
-              home-manager,
-              blender-bin,
-              ...
-              } @ inputs:
-    let
-      # overlay unstable packages to install selected unstable packages
-        unstable = final: prev: {
-              unstable = import inputs.unstable {
-                inherit (final.stdenv.hostPlatform) system;
-                inherit (final) config;
-              };
-        };
-
-      # Helper for automatic host discovery
-      mkHost = hostname: nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-
-        # allow uploading scripts to arduino by giving serial port permission
-        #users.users.mika.extraGroups = [ "dialout" ];
-
-        modules = 
-        let
-          mkOverlay = ({config, packages, ...}:
-            {
-              nixpkgs.overlays = [
-                unstable
-              ];
-            }
-          );
-        in
-        [
-          ./hosts/${hostname}
-          ./modules/system
-          mkOverlay
-          
-          #config.nix nixpkgs.overlays = [ unstable-overlay ];
-
-          home-manager.nixosModules.home-manager
-          {
-            networking.hostName = hostname;
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.mika = import ./modules/user;
-              extraSpecialArgs = { inherit inputs home-manager; };
-              #sharedModules = [
-                #inputs.niri.homeModules.niri
-                #inputs.vicinae.homeManagerModules.default
-                #inputs.noctalia.homeModules.default
-                #inputs.nix-colors.homeManagerModules.default
-              #];
-            };
-          }
-        ];
-      };
-    in {
-      nixosConfigurations = {
-        hauptquartier = mkHost "hauptquartier";
-        # Adding new hosts is trivial:
-        # laptop = mkHost "laptop";
-        # server = mkHost "server";
+    # Wwise binary in private repo
+    wwise = {
+      url = "github:Mikagino/Wwise-Executables";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
+
+  outputs = inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs ; }
+      (inputs.import-tree ./modules);
 }
