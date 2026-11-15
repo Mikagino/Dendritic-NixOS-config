@@ -11,8 +11,8 @@
       profiles.Mika = {
         default = true;
         sync = {
-          usernameFile = "${config.sops.secrets."anki/email".path}";
-          keyFile = "${config.sops.secrets."anki/password".path}";
+          autoSync = true;
+          username = config.sops.secrets."anki/password";
         };
       };
     };

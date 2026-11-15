@@ -32,8 +32,8 @@
         Type = "oneshot";
         ExecStart = "${pkgs.writeShellScript "testsops" ''
           echo "
-          Anki password: $(cat ${config.sops.secrets."anki/password".path})
-          Anki email: $(cat ${config.sops.secrets."anki/email".path})
+          Anki password: ${config.sops.secrets."anki/password".path}
+          Anki email: ${config.sops.secrets."anki/email".path}
           " > /home/mika/Downloads/anki-credits.log
         ''}";
       };
