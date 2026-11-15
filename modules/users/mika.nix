@@ -33,7 +33,6 @@
 			office
       nix-config
 			print3d
-      sops
 			terminal
       unstable-overlay
 		];
