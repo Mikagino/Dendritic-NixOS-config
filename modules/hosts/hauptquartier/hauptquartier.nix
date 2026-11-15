@@ -25,7 +25,6 @@
       nvidia
       python
       shell-aliases
-      sops
       unstable-overlay
     ]
     ++ [
