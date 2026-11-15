@@ -1,7 +1,7 @@
 {
 	...
 }: {
-	flake.nixosModules.japanese-mozc = { pkgs, ... }: {
+	flake.nixosModules.japanese-mozc = { pkgs, lib, ... }: {
     fonts.packages = with pkgs; [
       ipafont
       kochi-substitute
@@ -11,7 +11,6 @@
       enable = true;
       type = "fcitx5";
       fcitx5 = {
-        #plasma6Support = true;
         waylandFrontend = true;
         ignoreUserConfig = true;
         addons = with pkgs; [ 
@@ -20,6 +19,7 @@
         ];
 
         settings = {
+        globalOptions.Behavior.ActiveByDefault = true;
         inputMethod = {
           "Groups/0" = {
             Name = "Default";
@@ -32,5 +32,18 @@
       };
       };
     };
+
+    # Disable config qt tool
+    nixpkgs.overlays = [
+      (final: prev: {
+        qt6Packages = prev.qt6Packages.overrideScope (
+          qfinal: qprev: {
+            fcitx5-with-addons = qprev.fcitx5-with-addons.override {
+              withConfigtool = false;
+            };
+          }
+        );
+      })
+    ];
   };
 }
