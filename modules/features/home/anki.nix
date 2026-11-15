@@ -3,10 +3,6 @@
 	...
 }: {
   flake.homeModules.anki = { pkgs, config, ... }: {
-    # imports = [
-    #   inputs.sops-nix.homeManagerModules.sops
-    # ];
-
     sops.secrets."anki/email" = { };
     sops.secrets."anki/password" = { };
 
