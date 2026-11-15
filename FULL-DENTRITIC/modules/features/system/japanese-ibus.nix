@@ -2,10 +2,10 @@
 	...
 }: {
 	flake.nixosModules.japanese-ibus = { pkgs, ... }: {
-    fonts.packages = with pkgs; [
-      ipafont
-      kochi-substitute
-    ];
+    # fonts.packages = with pkgs; [
+    #   ipafont
+    #   kochi-substitute
+    # ];
 
     i18n.inputMethod = {
       enable = true;
